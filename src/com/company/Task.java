@@ -7,6 +7,16 @@ public class Task {
     private String executorName;
     private boolean isDone;
 
+    Task(String taskName, String date, String executorName, boolean isDone) { // конструктор
+        this.taskName = taskName;
+        this.date = date;
+        this.executorName = executorName;
+        this.isDone = isDone;
+    }
+
+    public Task() {
+
+    }
 
     public String getTaskName() {
         return taskName;
