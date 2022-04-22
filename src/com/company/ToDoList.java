@@ -61,39 +61,20 @@ public class ToDoList {
                 taskIterator.remove();//удаляем Task с нужным именем
             }
         }
+        System.out.println("ToDoList deleted");
     }
+
     public void changeTask() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter task name to change");
         String taskNameToChange = sc.nextLine();
         Iterator<Task> taskIterator = tasks.iterator();//создаем итератор
-        while(taskIterator.hasNext()) {//до тех пор, пока в списке есть элементы
+        while (taskIterator.hasNext()) {//до тех пор, пока в списке есть элементы
             Task nextTask = taskIterator.next();//получаем следующий элемент
             if (nextTask.getTaskName().equals(taskNameToChange)) // ?????????
-                tasks.set (tasks.indexOf (nextTask), createTask()); // ???????
+                tasks.set(tasks.indexOf(nextTask), createTask()); // ???????
         }      // далее пролдается метод по изменению задачи
         System.out.println("Please enter for correct :\n1.Correct TaskName\n2.Correct date\n3.Correct ExecutorName");
-
-
-        public void getToDoList() { ???????
-        for (Task task : tasks) {
-            System.out.println(task);
-        }
-    }
-
-    public void completedByTask(){  ????
-        public void markAsCompletedTask(){
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Please enter task name as completed");
-            String taskName = sc.nextLine();
-
-        }
-        public void markAsActiveTask() { ??????
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Please enter task name to change");
-            String taskName = sc.nextLine();
-        }
-    }
     }
 }
 
