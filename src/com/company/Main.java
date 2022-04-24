@@ -8,11 +8,11 @@ public class Main {
        // Menu.run();
         ToDoList toDay = new ToDoList("Bank");
         toDay.createTask();// проверка добаления задачи в лист
-        toDay.getToDoList();
+        //toDay.getToDoList();
         System.out.println(toDay.topic + toDay.tasks);
         //toDay.deleteTask();
         //System.out.println(toDay.topic + toDay.tasks); // проверка удаления задачи в листе
-
+        toDay.changeTask();
     }
 
 }

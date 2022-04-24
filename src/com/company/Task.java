@@ -7,6 +7,7 @@ public class Task {
     private String executorName;
     private boolean isDone;
 
+    //todo public
     Task(String taskName, String date, String executorName, boolean isDone) { // конструктор
         this.taskName = taskName;
         this.date = date;
@@ -47,6 +48,9 @@ public class Task {
     public String toString() {
         return "Task name = " + taskName + " , executor = " + executorName + " , deadline = " + date + ", Done = " + isDone;
     }
+
+    // todo лучше getter-ы и setter-ы, затем toString. Не очень важное замечание
+    //  (not important thing или nit). Но четкая структура класса выгоднее смотрится.
     public boolean isDone() {
         return isDone;
     }
