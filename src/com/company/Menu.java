@@ -8,49 +8,6 @@ import java.util.Scanner;
 public class Menu {
     static List<ToDoList> topicTodoList = new ArrayList<>();
 
-    private static void createToDoList() { //создаем ToDoList
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter ToDoList topic");
-        String topicTD = sc.nextLine();
-        for (int i = 0; i < topicTodoList.size(); i++) {
-            if (topicTodoList.get(i).topic.equals(topicTD)) {
-                System.out.println("Topic already exists. Try again");
-            }
-            return;
-        }
-        topicTodoList.add(new ToDoList(topicTD));
-        System.out.println("Topic added successfully");
-    }
-
-
-    private static void deleteToDoList() { //удаляем ToDoList с нужной темой
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter ToDoList topic");
-        String topicTD = sc.nextLine();
-        for (int i = 0; i < topicTodoList.size(); i++) {
-            if (topicTodoList.get(i).topic.equals(topicTD)) {
-                topicTodoList.remove(topicTodoList.get(i));    //удаляем ToDoList с выбранной темой
-                System.out.println("ToDoList " + topicTD + " deleted");
-            } else System.out.println("Such ToDoList does not exist");
-            break;
-        }
-    }
-
-    private static ToDoList selectToDoList() { //выбираем ToDoList с нужной темой
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter ToDoList topic to select");
-        String topicTD = sc.nextLine();
-        int i = 0;
-        for (i = 0; i < topicTodoList.size(); i++) {
-            if (topicTodoList.get(i).topic.equals(topicTD)) {
-                System.out.println("ToDoList topic " + topicTD + " to select");
-                return topicTodoList.get(i);
-            } else System.out.println("Such ToDoList does not exist");
-        }
-        return topicTodoList.get(i);
-
-    }
-
     static void run() {
 
         boolean quit = false;
@@ -125,6 +82,48 @@ public class Menu {
             }
         }
         System.exit(0);
+    }
+    private static void createToDoList() { //создаем ToDoList
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter ToDoList topic");
+        String topicTD = sc.nextLine();
+        for (int i = 0; i < topicTodoList.size(); i++) {
+            if (topicTodoList.get(i).topic.equals(topicTD)) {
+                System.out.println("Topic already exists. Try again");
+            }
+            return;
+        }
+        topicTodoList.add(new ToDoList(topicTD));
+        System.out.println("Topic added successfully");
+    }
+
+
+    private static void deleteToDoList() { //удаляем ToDoList с нужной темой
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter ToDoList topic");
+        String topicTD = sc.nextLine();
+        for (int i = 0; i < topicTodoList.size(); i++) {
+            if (topicTodoList.get(i).topic.equals(topicTD)) {
+                topicTodoList.remove(topicTodoList.get(i));    //удаляем ToDoList с выбранной темой
+                System.out.println("ToDoList " + topicTD + " deleted");
+            } else System.out.println("Such ToDoList does not exist");
+            break;
+        }
+    }
+
+    private static ToDoList selectToDoList() { //выбираем ToDoList с нужной темой
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter ToDoList topic to select");
+        String topicTD = sc.nextLine();
+        int i = 0;
+        for (i = 0; i < topicTodoList.size(); i++) {
+            if (topicTodoList.get(i).topic.equals(topicTD)) {
+                System.out.println("ToDoList topic " + topicTD + " to select");
+                return topicTodoList.get(i);
+            } else System.out.println("Such ToDoList does not exist");
+        }
+        return topicTodoList.get(i);
+
     }
 }
 
