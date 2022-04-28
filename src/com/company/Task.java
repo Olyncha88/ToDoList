@@ -15,7 +15,6 @@ public class Task {
     }
 
     public Task() {
-
     }
 
     public String getTaskName() {
@@ -26,12 +25,11 @@ public class Task {
         this.taskName = taskName;
     }
 
-
     public String getDate() {
         return date;
     }
-    public void setDate(String date) {this.date = date;
-    }
+    public void setDate(String date) {
+        this.date = date;}
 
     public String getExecutorName() {
         return executorName;
@@ -41,12 +39,6 @@ public class Task {
         this.executorName = executorName;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "Task name = " + taskName + " , executor = " + executorName + " , deadline = " + date + ", Done = " + isDone;
-    }
     public boolean isDone() {
         return isDone;
     }
@@ -54,4 +46,11 @@ public class Task {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
+
+    @Override
+    public String toString() {
+        return "Task name = " + taskName + " , executor = " + executorName +
+                " , deadline = " + date + ", Done = " + isDone;
+    }
+
 }

@@ -1,8 +1,8 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Iterator;
 import java.util.Scanner;
 
 
@@ -14,6 +14,9 @@ public class ToDoList {
         topic = topicName;
     }
 
+    public ToDoList() {
+    }
+
     public String getTopic() {
         return topic;
     }
@@ -22,11 +25,9 @@ public class ToDoList {
         this.topic = topic;
     }
 
-    public ToDoList() {
-    }
+    // private Scanner sc = new Scanner(System.in);
 
-
-    public Task createTask() {
+    public void createTask() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter task name");
         String taskName = sc.nextLine();
@@ -45,9 +46,9 @@ public class ToDoList {
         t.setTaskName(taskName);
         t.setExecutorName(executName);
         t.setDate(daedLine);
+        t.setDone(false);
         tasks.add(t);
-        System.out.println("Task added successfully.");
-        return t;
+        System.out.println("Task " + taskName + " added successfully.");
     }
 
     public void deleteTask() {
@@ -55,27 +56,48 @@ public class ToDoList {
         System.out.println("Please enter task name to delete");
         String taskNameToDel = sc.nextLine();
         Iterator<Task> taskIterator = tasks.iterator();//создаем итератор
-        while (taskIterator.hasNext()) {//до тех пор, пока в списке есть элементы
-            Task nextTask = taskIterator.next();//получаем следующий элемент
+        while (taskIterator.hasNext()) {
+                Task nextTask = taskIterator.next();    //получаем следующий элемент
             if (nextTask.getTaskName().equals(taskNameToDel)) {
                 taskIterator.remove();//удаляем Task с нужным именем
-            }
+                System.out.println("Task " + taskNameToDel + " deleted");
+            } else System.out.println("Such Task does not exist");
+            break;
         }
-        System.out.println("ToDoList deleted");
     }
 
     public void changeTask() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter task name to change");
+        System.out.println("Please enter task name to change. Next enter new: \\n1.Correct TaskName\\n2.Correct date\\n3.Correct ExecutorName");
         String taskNameToChange = sc.nextLine();
         Iterator<Task> taskIterator = tasks.iterator();//создаем итератор
         while (taskIterator.hasNext()) {//до тех пор, пока в списке есть элементы
             Task nextTask = taskIterator.next();//получаем следующий элемент
-            if (nextTask.getTaskName().equals(taskNameToChange)) // ?????????
-                tasks.set(tasks.indexOf(nextTask), createTask()); // ???????
-        }      // далее пролдается метод по изменению задачи
-        System.out.println("Please enter for correct :\n1.Correct TaskName\n2.Correct date\n3.Correct ExecutorName");
+            if (nextTask.getTaskName().equals(taskNameToChange)) {
+                tasks.set(tasks.indexOf(nextTask), new Task(sc.nextLine(), sc.nextLine(), sc.nextLine(), false)); // ???????
+                System.out.println("Task changed successfully");
+            } else System.out.println("Such Task does not exist");
+        }
+    }
+
+    public void markCompletedTask() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter task name to mark it as completed");
+        String taskNameToCompleted = sc.nextLine();
+        Iterator<Task> taskIterator = tasks.iterator();//создаем итератор
+        while (taskIterator.hasNext()) {//до тех пор, пока в списке есть элементы
+            Task nextTask = taskIterator.next();//получаем следующий элемент
+            if (nextTask.getTaskName().equals(taskNameToCompleted)) {
+                tasks.set(tasks.indexOf(nextTask), new Task(nextTask.getTaskName(), nextTask.getDate(),nextTask.getExecutorName(),true));
+            System.out.println("Task " + taskNameToCompleted + " is marked as completed");
+                System.out.println(tasks.toString());
+        } else System.out.println("Such Task does not exist");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "ToDoList: " + topic + " ";
     }
 }
-
 
