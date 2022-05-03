@@ -7,7 +7,6 @@ public class Task {
     private String executorName;
     private boolean isDone;
 
-    //todo public
     Task(String taskName, String date, String executorName, boolean isDone) { // конструктор
         this.taskName = taskName;
         this.date = date;
@@ -16,7 +15,6 @@ public class Task {
     }
 
     public Task() {
-
     }
 
     public String getTaskName() {
@@ -27,12 +25,11 @@ public class Task {
         this.taskName = taskName;
     }
 
-
     public String getDate() {
         return date;
     }
-    public void setDate(String date) {this.date = date;
-    }
+    public void setDate(String date) {
+        this.date = date;}
 
     public String getExecutorName() {
         return executorName;
@@ -42,15 +39,6 @@ public class Task {
         this.executorName = executorName;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "Task name = " + taskName + " , executor = " + executorName + " , deadline = " + date + ", Done = " + isDone;
-    }
-
-    // todo лучше getter-ы и setter-ы, затем toString. Не очень важное замечание
-    //  (not important thing или nit). Но четкая структура класса выгоднее смотрится.
     public boolean isDone() {
         return isDone;
     }
@@ -58,4 +46,11 @@ public class Task {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
+
+    @Override
+    public String toString() {
+        return "Task name = " + taskName + " , executor = " + executorName +
+                " , deadline = " + date + ", Done = " + isDone;
+    }
+
 }
