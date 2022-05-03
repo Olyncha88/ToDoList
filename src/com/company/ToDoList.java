@@ -26,8 +26,12 @@ public class ToDoList {
     }
 
     // private Scanner sc = new Scanner(System.in);
-
+    // todo В идеале нужно логику создания объекта создать в отдельном класс TaskDAO или TaskRepository
+    //  а объект добавлять в список через setter. Мы это не проходили еще, но если сможешь сделай так, нет,
+    //  оставь как есть. Пока это не ошибка) Просто хочу попробовать дать тебе возможность
+    //  продвинуться чуть-чуть дальше самостоятельно.)
     public void createTask() {
+        // todo незачем создавать каждый раз сканер, можно вынести его в поле объекта Menu
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter task name");
         String taskName = sc.nextLine();
@@ -52,6 +56,7 @@ public class ToDoList {
     }
 
     public void deleteTask() {
+        // todo незачем создавать каждый раз сканер, можно вынести его в поле объекта Menu
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter task name to delete");
         String taskNameToDel = sc.nextLine();
@@ -61,12 +66,16 @@ public class ToDoList {
             if (nextTask.getTaskName().equals(taskNameToDel)) {
                 taskIterator.remove();//удаляем Task с нужным именем
                 System.out.println("Task " + taskNameToDel + " deleted");
+                // todo лучше использовать {} даже при 1 строчке, так проще читать и сложнее ошибиться в будущем
+                //  И вообще ты выводишь это сообщение на каждой итерации. Это нарушение логики.
             } else System.out.println("Such Task does not exist");
+            // todo Зачем здесь break? Здесь он бесполезен. Его можно воткнуть на 69 строчку.
             break;
         }
     }
 
     public void changeTask() {
+        // todo незачем создавать каждый раз сканер, можно вынести его в поле объекта Menu
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter task name to change. Next enter new: \\n1.Correct TaskName\\n2.Correct date\\n3.Correct ExecutorName");
         String taskNameToChange = sc.nextLine();
@@ -76,10 +85,14 @@ public class ToDoList {
             if (nextTask.getTaskName().equals(taskNameToChange)) {
                 tasks.set(tasks.indexOf(nextTask), new Task(sc.nextLine(), sc.nextLine(), sc.nextLine(), false)); // ???????
                 System.out.println("Task changed successfully");
+                // todo нужно добавить break не буду писать во всех местах, посмотри сама, пожалуйста.
+                // todo лучше использовать {} даже при 1 строчке, так проще читать и сложнее ошибиться в будущем
+                //  И вообще ты выводишь это сообщение на каждой итерации. Это нарушение логики.
             } else System.out.println("Such Task does not exist");
         }
     }
 
+    // todo Замечания те же, что и раньше надоело повторяться. Верю, что ты справишься сама)
     public void markCompletedTask() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter task name to mark it as completed");
