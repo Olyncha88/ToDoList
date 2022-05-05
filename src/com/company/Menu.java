@@ -6,9 +6,10 @@ import java.util.Scanner;
 
 
 public class Menu {
-    static List<ToDoList> topicTodoList = new ArrayList<>();
+     List<ToDoList> topicTodoList = new ArrayList<>();
+     private Scanner sc = new Scanner(System.in);
 
-    static void run() {
+     void run() {
 
         boolean quit = false;
         String mainMenu = "" + "1. Display Print\n" + "2. Add a toDoList\n" +
@@ -33,45 +34,7 @@ public class Menu {
                     break;
                 case 4:
                     // select toDo List
-                    selectToDoList();
-
-                    boolean quitMenu = false;
-
-                    String menuTask = ("" + "1. Add a Task\n" +
-                            "2. Delete a Task\n" + "3. Change a Task\n" + "4. Mark a Task as completed\n" +
-                            "5. Quit Menu\n\n");
-
-                    System.out.println(menuTask);
-
-                    while (!quitMenu) {
-                        Scanner inputTask = new Scanner(System.in);
-                        System.out.println("Please enter number for Task");
-                        System.out.println(menuTask);
-                        int choiceTask = inputTask.nextInt();
-                        switch (choiceTask) {
-                            case 1:
-                                // + Task
-                                selectToDoList().createTask();
-                                break;
-                            case 2:
-                                // del Task
-                                selectToDoList().deleteTask();
-                                break;
-                            case 3:
-                                // change Task
-                                selectToDoList().changeTask();
-                                break;
-                            case 4:
-                                // mark completed Task
-                                selectToDoList().markCompletedTask();
-                                break;
-                            case 5:
-                                // EXIT Menu
-                                quitMenu = true;
-                                break;
-                        }
-                    }
-
+                    selectToDoList().runMenuTask();
                     break;
                 case 5:
                     // EXIT
@@ -83,48 +46,51 @@ public class Menu {
         }
         System.exit(0);
     }
-    private static void createToDoList() { //создаем ToDoList
-        Scanner sc = new Scanner(System.in);
+
+
+    private  void createToDoList() {
         System.out.println("Please enter ToDoList topic");
         String topicTD = sc.nextLine();
-        for (int i = 0; i < topicTodoList.size(); i++) {
-            if (topicTodoList.get(i).topic.equals(topicTD)) {
+        for (ToDoList i : topicTodoList) {
+            if ((i.topic).equals(topicTD)) {
                 System.out.println("Topic already exists. Try again");
             }
-            return;
+            continue;
         }
         topicTodoList.add(new ToDoList(topicTD));
-        System.out.println("Topic added successfully");
+        System.out.println("ToDoList Topic " + topicTD + " added successfully");
     }
 
 
-    private static void deleteToDoList() { //удаляем ToDoList с нужной темой
-        Scanner sc = new Scanner(System.in);
+    private void deleteToDoList() {
         System.out.println("Please enter ToDoList topic");
         String topicTD = sc.nextLine();
-        for (int i = 0; i < topicTodoList.size(); i++) {
-            if (topicTodoList.get(i).topic.equals(topicTD)) {
-                topicTodoList.remove(topicTodoList.get(i));    //удаляем ToDoList с выбранной темой
-                System.out.println("ToDoList " + topicTD + " deleted");
-            } else System.out.println("Such ToDoList does not exist");
-            break;
+        for (ToDoList i : topicTodoList) {
+            if (!(i.topic).equals(topicTD)) {
+                //System.out.println("Such ToDoList does not exist"); // для проверки
+                continue;
+            } else {
+                topicTodoList.remove(i);
+                System.out.println("ToDoList topic " + topicTD + " deleted");
+            } break;
         }
     }
 
-    private static ToDoList selectToDoList() { //выбираем ToDoList с нужной темой
-        Scanner sc = new Scanner(System.in);
+    private ToDoList selectToDoList() {
         System.out.println("Please enter ToDoList topic to select");
         String topicTD = sc.nextLine();
-        int i = 0;
-        for (i = 0; i < topicTodoList.size(); i++) {
-            if (topicTodoList.get(i).topic.equals(topicTD)) {
+        ToDoList toDoList = null;
+        for (ToDoList i : topicTodoList) {
+            if (!(i.topic).equals(topicTD)) {
+                //System.out.println("ToDoList topic " + topicTD + " to select"); // для проверки
+                continue;
+            } else {
+                toDoList = topicTodoList.get(topicTodoList.indexOf(i));
                 System.out.println("ToDoList topic " + topicTD + " to select");
-                return topicTodoList.get(i);
-            } else System.out.println("Such ToDoList does not exist");
-        }
-        return topicTodoList.get(i);
-
+            }
+        } return toDoList;
     }
+
 }
 
 
